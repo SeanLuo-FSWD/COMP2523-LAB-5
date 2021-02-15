@@ -63,41 +63,25 @@ export class LinkedListGroup implements ISortable {
   }
 
   compare(leftPos: number, rightPos: number): boolean {
-    // Implement this part yourself
-    let counter = 0;
-    let node: Node | null = this.head;
 
-    let leftNode: Node;
-    let rightNode: Node;
+    const leftNode = this.at(leftPos);
     let to_swap = false;
 
-    if (!this.head) {
-      return false;
-    }
-    while (node) {
-      if (counter === leftPos) {
-        leftNode = node;
-        if (node.next != null) {
-          rightNode = node.next;
-          if (leftNode.data > rightNode.data) {
-            to_swap = true;
-          } else {
-            to_swap = false;
-          }
-          return to_swap;
-        }
+    if (leftNode.next != null) {
+      const rightNode = leftNode.next;
+      const rightNodeVal = rightNode.data;
+      if (leftNode.data > rightNodeVal) {
+        to_swap = true;
+      } else {
+        to_swap = false;
       }
-      counter++;
-      node = node.next;
     }
-    return false;
+
+    return to_swap;
   }
 
   swap(leftPos: number, rightPos: number): void {
     // Implement this part yourself
-
-    let leftNode: Node;
-    let rightNode: Node;
 
     let leftNodeVal: number = this.at(leftPos).data;
     let rightNodeVal: number = this.at(rightPos).data;
@@ -105,17 +89,13 @@ export class LinkedListGroup implements ISortable {
     let counter = 0;
     let node: Node | null = this.head;
 
-    let temp = leftNodeVal;
-
     if (!this.head) {
       throw new Error("Error: Index out of bounds");
     }
     while (node) {
       if (counter === leftPos) {
         node.data = rightNodeVal;
-        if (node.next != null) {
-          node.next.data = leftNodeVal;
-        }
+        node.next!.data = leftNodeVal;
       }
       counter++;
       node = node.next;
