@@ -12,20 +12,13 @@ class SortUtil {
 
   sort(): void {
     const { length } = this.collection;
-    console.log("void called");
-
-    console.log(length);
 
     let isSorted = false;
     let lastUnsorted = length - 1;
     while (!isSorted) {
       isSorted = true;
 
-      // If i == lastUnsorted, for loop won't run, so assume sorted
       for (let i = 0; i < lastUnsorted; i++) {
-        console.log(i);
-        console.log("stopper");
-        console.log(lastUnsorted);
         if (this.collection.compare(i, i + 1)) {
           this.collection.swap(i, i + 1);
           isSorted = false;
@@ -42,9 +35,6 @@ const sorter1 = new SortUtil(numberGroup);
 sorter1.sort();
 console.log(numberGroup.data);
 console.log("------------------------");
-
-console.log("a".localeCompare("b"));
-console.log("g".localeCompare("b"));
 
 const characterGroup = new CharacterGroup("Xaeyb");
 const sorter2 = new SortUtil(characterGroup);
